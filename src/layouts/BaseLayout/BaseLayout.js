@@ -4,6 +4,9 @@ import { Navigation, Logo } from "components";
 
 const useStyles = makeStyles({
   wrapper: {
+    display: "flex",
+    flexDirection: "column",
+    height: "100%",
     margin: "0 auto",
     maxWidth: pxToREM(1000),
     paddingLeft: pxToREM(20),
@@ -12,6 +15,10 @@ const useStyles = makeStyles({
   Logo: {
     display: "block",
     margin: `${pxToREM(20)} auto`,
+  },
+  main: {
+    display: "flex",
+    flexGrow: 1,
   },
 });
 
@@ -22,7 +29,7 @@ export function BaseLayout({ children }) {
     <div className={classes.wrapper}>
       <Logo styleOverrides={classes.Logo} />
       <Navigation />
-      <main>{children}</main>
+      <main className={classes.main}>{children}</main>
     </div>
   );
 }

@@ -1,10 +1,10 @@
-import Typography from "@material-ui/core/Typography";
 import { BaseLayout } from "layouts";
+import { UploadForm } from "components";
 
 export function Upload() {
   return (
     <BaseLayout>
-      <Typography variant="h1">Upload</Typography>
+      <UploadForm />
     </BaseLayout>
   );
 }

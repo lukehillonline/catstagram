@@ -2,12 +2,12 @@ import { useQuery } from "react-query";
 import { get } from "api";
 
 export function useGetCats() {
-  console.log(process.env.REACT_APP_CAT_API_URL);
   const { data, status } = useQuery(
     ["cats"],
     async () => {
       return get({
-        path: `${process.env.REACT_APP_CAT_API_URL}/images/search`,
+        path: `${process.env.REACT_APP_CAT_API_URL}/images`,
+        params: { limit: 50 },
         headers: { "x-api-key": process.env.REACT_APP_CAT_API_KEY },
       });
     },

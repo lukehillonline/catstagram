@@ -137,6 +137,10 @@ const theme = createMuiTheme({
 
     MuiCssBaseline: {
       "@global": {
+        "html, body, #root": {
+          height: "100%",
+        },
+
         // Input Overrides
         "input::-ms-clear": {
           display: "none",
