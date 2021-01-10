@@ -23,16 +23,9 @@ const colors = {
   },
 };
 
-const fontFamily = {
-  body: "Benton Sans Reg, Helvetica, Arial, Lucida Grande, sans-serif",
-  bodyBold: "Benton Sans Bd, Helvetica, Arial, Lucida Grande, sans-serif",
-  display: "Akkurat, Helvetica, Arial, Lucida Grande, sans-serif",
-};
-
 const typography = {
   h1: {
     color: colors.secondary.main,
-    fontFamily: fontFamily.display,
     fontSize: pxToREM(14),
     fontWeight: "700",
     letterSpacing: pxToREM(5),
@@ -41,7 +34,6 @@ const typography = {
   },
   h2: {
     color: colors.secondary.main,
-    fontFamily: fontFamily.display,
     fontSize: pxToREM(11),
     fontWeight: "700",
     letterSpacing: pxToREM(5),
@@ -50,7 +42,7 @@ const typography = {
   },
   h3: {
     color: colors.text.primary,
-    fontFamily: fontFamily.bodyBold,
+    fontWeight: "bold",
     fontSize: pxToREM(14),
     lineHeight: 1,
   },
@@ -62,7 +54,7 @@ const typography = {
   },
   h5: {
     color: colors.primary.main,
-    fontFamily: fontFamily.bodyBold,
+    fontWeight: "bold",
     fontSize: pxToREM(12),
     letterSpacing: pxToREM(4),
     lineHeight: pxToREM(16),
@@ -70,7 +62,6 @@ const typography = {
   },
   h6: {
     color: colors.secondary.main,
-    fontFamily: fontFamily.display,
     fontSize: pxToREM(9),
     letterSpacing: pxToREM(4),
     lineHeight: pxToREM(13),
@@ -78,7 +69,7 @@ const typography = {
   },
   subtitle1: {
     color: colors.secondary.main,
-    fontFamily: fontFamily.bodyBold,
+    fontWeight: "bold",
     fontSize: pxToREM(12),
     lineHeight: pxToREM(14),
   },
@@ -116,13 +107,11 @@ const theme = createMuiTheme({
   /**
    * FONT FAMILY
    */
-  fontFamily,
 
   /**
    * TYPOGRAPHY
    */
   typography: {
-    fontFamily: fontFamily.body,
     ...typography,
   },
 
@@ -395,7 +384,9 @@ const theme = createMuiTheme({
     MuiLink: {
       root: {
         cursor: "pointer",
-        fontFamily: fontFamily.bodyBold,
+        fontWeight: "bold",
+        padding: `${pxToREM(10)} ${pxToREM(20)}`,
+        textTransform: "uppercase",
 
         "&.MuiTypography-colorPrimary": {
           "&:hover": {
@@ -431,7 +422,7 @@ const theme = createMuiTheme({
         },
       },
       active: {
-        fontFamily: fontFamily.bodyBold,
+        fontWeight: "bold",
       },
       completed: {
         cursor: "pointer",
@@ -439,7 +430,7 @@ const theme = createMuiTheme({
     },
     MuiStepIcon: {
       text: {
-        fontFamily: fontFamily.bodyBold,
+        fontWeight: "bold",
         ...typography.body2,
       },
       completed: {
@@ -495,7 +486,7 @@ const theme = createMuiTheme({
     MuiTooltip: {
       tooltip: {
         backgroundColor: colors.secondary.main,
-        fontFamily: fontFamily.bodyBold,
+        fontWeight: "bold",
         ...typography.body2,
       },
       arrow: {

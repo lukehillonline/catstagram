@@ -16,10 +16,6 @@ const useStyles = makeStyles({
     display: "block",
     margin: `${pxToREM(20)} auto`,
   },
-  main: {
-    display: "flex",
-    flexGrow: 1,
-  },
 });
 
 export function BaseLayout({ children }) {
@@ -29,7 +25,7 @@ export function BaseLayout({ children }) {
     <div className={classes.wrapper}>
       <Logo styleOverrides={classes.Logo} />
       <Navigation />
-      <main className={classes.main}>{children}</main>
+      <main>{children}</main>
     </div>
   );
 }

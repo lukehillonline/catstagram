@@ -6,6 +6,7 @@ const useStyles = makeStyles({
   nav: {
     display: "flex",
     justifyContent: "center",
+    marginBottom: pxToREM(20),
   },
   NavigationItem: {
     marginLeft: pxToREM(20),
