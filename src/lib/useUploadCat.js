@@ -13,10 +13,6 @@ export function useUploadCat() {
     })
   );
 
-  // const [mutate, { status, error }] = useMutation((data) =>
-
-  // );
-
   return {
     uploadCat: mutate,
     status,
