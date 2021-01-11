@@ -80,6 +80,7 @@ export function UploadForm() {
   function setImage(event) {
     if (event.target.files[0]) {
       const tempPicture = event.target.files[0];
+
       setPicture(tempPicture);
       setPreview(URL.createObjectURL(tempPicture));
       setShowSuccess(false);
@@ -126,8 +127,10 @@ export function UploadForm() {
         ref={fileUploadInput}
         type="file"
         name="image"
+        id="image"
         onChange={setImage}
         className={classes.hiddenInput}
+        alt="image"
       />
 
       {showSuccess && (
