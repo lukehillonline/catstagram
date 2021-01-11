@@ -15,17 +15,22 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.grey["200"],
     display: "flex",
     justifyContent: "center",
-    margin: "0 auto",
+    margin: `0 auto ${pxToREM(20)}`,
     maxWidth: pxToREM(500),
-    minHeight: pxToREM(400),
+    padding: "25%",
     position: "relative",
     width: "100%",
+
+    [theme.breakpoints.up("sm")]: {
+      minHeight: pxToREM(400),
+      padding: 0,
+    },
   },
   previewIcon: {
     cursor: "pointer",
     display: "block",
     height: pxToREM(50),
-    margin: "0 auto",
+    margin: `0 auto ${pxToREM(10)}`,
     width: pxToREM(50),
   },
   previewImage: {
@@ -37,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   uploadButton: {
     display: "block",
-    margin: "0 auto",
+    margin: `0 auto ${pxToREM(20)}`,
   },
 }));
 
@@ -96,12 +101,24 @@ export function UploadForm() {
               className={classes.previewIcon}
               onClick={triggerImageSelection}
             />
-            <Button onClick={triggerImageSelection}>Select Image</Button>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={triggerImageSelection}
+            >
+              Select Image
+            </Button>
           </div>
         )}
       </div>
 
-      <Button className={classes.uploadButton} onClick={submitCat}>
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.uploadButton}
+        onClick={submitCat}
+        disabled={!picture}
+      >
         Upload
       </Button>
 
@@ -114,7 +131,9 @@ export function UploadForm() {
       />
 
       {showSuccess && (
-        <Typography variant="h1">Image Uploaded Successfully</Typography>
+        <Typography align="center" variant="h1">
+          Image Uploaded Successfully
+        </Typography>
       )}
       {status === "loading" && <Loading />}
       {status === "error" && <Typography color="error">{error}</Typography>}

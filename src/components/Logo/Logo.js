@@ -4,8 +4,10 @@ import PetsIcon from "@material-ui/icons/Pets";
 
 const useStyles = makeStyles({
   logo: {
-    height: pxToREM(150),
-    width: pxToREM(150),
+    height: "auto",
+    maxHeight: pxToREM(150),
+    maxWidth: pxToREM(150),
+    width: "20%",
   },
 });
 

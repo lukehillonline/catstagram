@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { pxToREM } from "utils";
 import { Navigation, Logo } from "components";
+import { pxToREM } from "utils";
 
 const useStyles = makeStyles({
   wrapper: {

@@ -7,6 +7,7 @@ const useStyles = makeStyles({
   container: ({ status }) => ({
     display: "flex",
     flexWrap: "wrap",
+    marginBottom: pxToREM(40),
     minHeight: status === "loading" ? pxToREM(300) : null,
     position: "relative",
   }),
