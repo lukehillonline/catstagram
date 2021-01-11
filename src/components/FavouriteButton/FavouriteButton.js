@@ -15,6 +15,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * This component renders a heart button that allows a user to favourite
+ * an image
+ *
+ * @param {integer} imageId used to identify which image is being favourited
+ * @param {object} styleOverride style overrides
+ */
 export function FavouriteButton({ imageId, styleOverride }) {
   const [favouriteId, setFavouriteId] = useState();
   const [active, setActive] = useState(false);

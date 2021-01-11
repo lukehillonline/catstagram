@@ -6,6 +6,7 @@ import Link from "@material-ui/core/Link";
  * and react router NavLink for routing.
  *
  * @param {string} href a path to a page
+ * @param {object} styleOverride style overrides
  */
 export function NavigationItem({ href, styleOverride, children, ...props }) {
   return (

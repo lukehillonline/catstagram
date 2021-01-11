@@ -1,6 +1,12 @@
 import { useMutation } from "react-query";
 import { post } from "api";
 
+/**
+ * Adds an image to a users favourite list, expects a data object like this:
+ *   data: {
+ *     image_id: imageId,
+ *   },
+ */
 export function useSetFavourite() {
   const { mutate, status, error, data } = useMutation(({ data }) =>
     post({

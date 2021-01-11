@@ -18,6 +18,9 @@ const useStyles = makeStyles({
   },
 });
 
+/**
+ * The base layout that renders common components
+ */
 export function BaseLayout({ children }) {
   const classes = useStyles();
 

@@ -11,6 +11,11 @@ const useStyles = makeStyles({
   },
 });
 
+/**
+ * Renders the logo
+ *
+ * @param {object} styleOverrides style overrides
+ */
 export function Logo({ styleOverrides }) {
   const classes = useStyles();
   return <PetsIcon className={`${classes.logo} ${styleOverrides}`} />;

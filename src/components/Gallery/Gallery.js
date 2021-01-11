@@ -13,6 +13,9 @@ const useStyles = makeStyles({
   }),
 });
 
+/**
+ * This component renders a gallery of images
+ */
 export function Gallery() {
   const { data, status } = useGetCats();
   const classes = useStyles({ status });

@@ -14,6 +14,9 @@ const useStyles = makeStyles({
   },
 });
 
+/**
+ * Renders the site navigation
+ */
 export function Navigation() {
   const classes = useStyles();
 

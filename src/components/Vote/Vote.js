@@ -30,6 +30,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * This component renders two buttons that allow a user to vote
+ * up or down an image and the count of total votes
+ *
+ * @param {integer} imageId the ID for image that is being voted on
+ */
 export function Vote({ imageId }) {
   const [count, setCount] = useState(0);
   const [direction, setDirection] = useState();

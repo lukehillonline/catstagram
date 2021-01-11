@@ -1,6 +1,11 @@
 import { useQuery } from "react-query";
 import { get } from "api";
 
+/**
+ * TODO: pagination
+ *
+ * This custom hook will fetch all cat data
+ */
 export function useGetCats() {
   const { data, status } = useQuery(
     ["cats"],

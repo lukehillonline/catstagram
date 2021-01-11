@@ -1,6 +1,11 @@
 import { useMutation } from "react-query";
 import { del } from "api";
 
+/**
+ * Deletes an items from a users favourite list
+ *
+ * @param {integer} favourite_id the ID of the favourite entry
+ */
 export function useDeleteFavourite() {
   const { mutate, status, error } = useMutation(({ favourite_id }) =>
     del({

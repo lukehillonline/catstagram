@@ -1,6 +1,12 @@
 import { useMutation } from "react-query";
 import { post } from "api";
 
+/**
+ * Uploads a new image, expects a data object like this:
+ * data: {
+ *    file: -FILE-
+ * }
+ */
 export function useUploadCat() {
   const { mutate, status, error, reset } = useMutation(({ data }) =>
     post({

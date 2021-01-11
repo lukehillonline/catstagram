@@ -34,6 +34,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * This component renders a singular gallery item which also renders the
+ * favourite and voting buttons
+ *
+ *
+ * @param {object} data the data about the gallery item
+ */
 export function GalleryItem({ data }) {
   const classes = useStyles({ url: data.url });
 

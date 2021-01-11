@@ -46,6 +46,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * This component renders a form that allows a user to upload an image,
+ * the image is shown as a preview before uploading
+ */
 export function UploadForm() {
   const { uploadCat, status, error, reset } = useUploadCat();
   const [picture, setPicture] = useState();

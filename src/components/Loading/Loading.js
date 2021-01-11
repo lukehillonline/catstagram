@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * Renders a spinning loading animation
+ */
 export function Loading() {
   const classes = useStyles();
 

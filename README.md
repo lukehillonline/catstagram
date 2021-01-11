@@ -1,3 +1,5 @@
+This project is a bit of fun that uses [TheCatAPI](https://docs.thecatapi.com/) to create a SPA that allows you to upload pictures of a cat, favourite them and vote on them.
+
 # Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
