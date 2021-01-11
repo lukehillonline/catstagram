@@ -70,7 +70,12 @@ export function Vote({ imageId }) {
 
   return (
     <div className={classes.wrapper}>
-      <ThumbUpIcon className={classes.thumbsUp} onClick={handleVoteUp} />
+      <ThumbUpIcon
+        className={classes.thumbsUp}
+        onClick={handleVoteUp}
+        title="Vote Up"
+        tabIndex="0"
+      />
       <Typography variant="h1" className={classes.count}>
         {count}
       </Typography>
@@ -81,6 +86,8 @@ export function Vote({ imageId }) {
             handleVoteDown();
           }
         }}
+        title="Vote Down"
+        tabIndex="0"
       />
     </div>
   );

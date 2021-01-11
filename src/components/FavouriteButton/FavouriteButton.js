@@ -44,6 +44,8 @@ export function FavouriteButton({ imageId, styleOverride }) {
           favourite_id: favouriteId,
         })
       }
+      tabIndex="0"
+      title="Click to unfavourite"
     />
   ) : (
     <FavoriteBorderIcon
@@ -55,6 +57,8 @@ export function FavouriteButton({ imageId, styleOverride }) {
           },
         })
       }
+      tabIndex="0"
+      title="Click to favourite"
     />
   );
 }
