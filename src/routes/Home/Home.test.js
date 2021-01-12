@@ -69,15 +69,15 @@ test("A user can vote up and down item", async () => {
     data: [
       {
         height: 700,
-        id: "bn1I9i1TT",
-        original_filename: "WhiteCat_20170526_03.jpg",
+        id: "IMAGE1",
+        original_filename: "image_1.jpg",
         url: "https://cdn2.thecatapi.com/images/bn1I9i1TT.jpg",
         width: 700,
       },
       {
         height: 700,
-        id: "bn1I9i1TT",
-        original_filename: "WhiteCat_20170526_03.jpg",
+        id: "IMAGE2",
+        original_filename: "image_2.jpg",
         url: "https://cdn2.thecatapi.com/images/bn1I9i1TT.jpg",
         width: 700,
       },
@@ -86,17 +86,23 @@ test("A user can vote up and down item", async () => {
 
   customRender(<Home />);
 
-  expect(await screen.findByTitle("Vote Up")).toBeInTheDocument();
+  await waitFor(() => expect(screen.getAllByText("0").length).toEqual(2));
 
-  axios.post.mockResolvedValue({
+  axios.post.mockResolvedValueOnce({
     data: { message: "success", id: 0 },
   });
 
   fireEvent.click(screen.getAllByTitle("Vote Up")[0]);
 
-  expect((await screen.findAllByText("1")).length).toEqual(1);
+  await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(1));
+  await waitFor(() => expect(screen.getAllByText("1").length).toEqual(1));
+
+  axios.post.mockResolvedValueOnce({
+    data: { message: "success", id: 1 },
+  });
 
   fireEvent.click(screen.getAllByTitle("Vote Down")[0]);
 
-  expect((await screen.findAllByText("0")).length).toEqual(2);
+  await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(1));
+  await waitFor(() => expect(screen.getAllByText("0").length).toEqual(2));
 });

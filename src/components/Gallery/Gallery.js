@@ -26,9 +26,7 @@ export function Gallery() {
       {status === "loading" ? (
         <Loading />
       ) : status === "success" ? (
-        data.data.map((item, index) => (
-          <GalleryItem key={item.id} data={item} />
-        ))
+        data.data.map((item) => <GalleryItem key={item.id} data={item} />)
       ) : status === "error" ? (
         <Typography color="error">
           Whoops, it appears something has gone wrong, please try again later.
