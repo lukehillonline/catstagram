@@ -7,3 +7,4 @@ export * from "./GalleryItem";
 export * from "./Loading";
 export * from "./FavouriteButton";
 export * from "./Vote";
+export * from "./ErrorNotification";

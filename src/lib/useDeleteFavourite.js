@@ -7,9 +7,9 @@ import { del } from "api";
  * @param {integer} favourite_id the ID of the favourite entry
  */
 export function useDeleteFavourite() {
-  const { mutate, status, error } = useMutation(({ favourite_id }) =>
+  const { mutate, status, error, reset } = useMutation(({ favourite_id }) =>
     del({
-      path: `${process.env.REACT_APP_CAT_API_URL}/favourites/${favourite_id}`,
+      path: `https://api.thecatapi.com/v1/favourites/${favourite_id}`,
       headers: {
         "x-api-key": process.env.REACT_APP_CAT_API_KEY,
       },
@@ -20,5 +20,6 @@ export function useDeleteFavourite() {
     deleteFavourite: mutate,
     status,
     error,
+    reset,
   };
 }

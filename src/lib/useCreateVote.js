@@ -12,10 +12,10 @@ import { post } from "api";
  * will decrease
  */
 export function useCreateVote() {
-  const { mutate, status, error, reset } = useMutation(
+  const { mutate, status, reset } = useMutation(
     ({ data, callback }) =>
       post({
-        path: `${process.env.REACT_APP_CAT_API_URL}/votes`,
+        path: `https://api.thecatapi.com/v1/votes`,
         data,
         headers: {
           "x-api-key": process.env.REACT_APP_CAT_API_KEY,
@@ -33,7 +33,6 @@ export function useCreateVote() {
   return {
     createVote: mutate,
     status,
-    error,
     reset,
   };
 }

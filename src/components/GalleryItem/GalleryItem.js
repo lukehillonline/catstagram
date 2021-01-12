@@ -1,5 +1,6 @@
+import { useRef, useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { FavouriteButton, Vote } from "components";
+import { FavouriteButton, Vote, ErrorNotification } from "components";
 import { pxToREM } from "utils";
 
 const useStyles = makeStyles((theme) => ({
@@ -42,15 +43,36 @@ const useStyles = makeStyles((theme) => ({
  * @param {object} data the data about the gallery item
  */
 export function GalleryItem({ data }) {
+  const [errorMessage, setErrorMessage] = useState();
+  const errorTimer = useRef();
   const classes = useStyles({ url: data.url });
 
+  useEffect(() => {
+    return () => {
+      clearTimeout(errorTimer.current);
+    };
+  });
+
+  function showError(message) {
+    clearTimeout(errorTimer.current);
+    setErrorMessage(message);
+    errorTimer.current = setTimeout(() => {
+      setErrorMessage(null);
+    }, 5000);
+  }
+
   return (
-    <div className={classes.container}>
-      <FavouriteButton
-        imageId={data.id}
-        styleOverride={classes.favouriteButton}
-      />
-      <Vote imageId={data.id} />
-    </div>
+    <>
+      <div className={classes.container}>
+        <FavouriteButton
+          imageId={data.id}
+          showError={showError}
+          styleOverride={classes.favouriteButton}
+        />
+        <Vote imageId={data.id} showError={showError} />
+      </div>
+
+      {errorMessage && <ErrorNotification>{errorMessage}</ErrorNotification>}
+    </>
   );
 }

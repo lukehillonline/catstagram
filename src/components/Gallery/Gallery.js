@@ -1,8 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { Typography } from "@material-ui/core";
 import { useGetCats } from "lib";
 import { GalleryItem, Loading } from "components";
 import { pxToREM } from "utils";
-import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
   container: ({ status }) => ({
@@ -10,7 +10,6 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
     marginBottom: pxToREM(40),
     minHeight: status === "loading" ? pxToREM(300) : null,
-    position: "relative",
   }),
 });
 
@@ -28,7 +27,7 @@ export function Gallery() {
       ) : status === "success" ? (
         data.data.map((item) => <GalleryItem key={item.id} data={item} />)
       ) : status === "error" ? (
-        <Typography color="error">
+        <Typography color="error" align="center">
           Whoops, it appears something has gone wrong, please try again later.
         </Typography>
       ) : null}

@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import { Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ImageSearchIcon from "@material-ui/icons/ImageSearch";
@@ -51,31 +52,18 @@ const useStyles = makeStyles((theme) => ({
  * the image is shown as a preview before uploading
  */
 export function UploadForm() {
-  const { uploadCat, status, error, reset } = useUploadCat();
+  const { uploadCat, status } = useUploadCat();
+  const history = useHistory();
   const [picture, setPicture] = useState();
   const [preview, setPreview] = useState();
-  const [showSuccess, setShowSuccess] = useState(false);
   const fileUploadInput = useRef();
   const classes = useStyles();
 
   useEffect(() => {
     if (status === "success") {
-      setShowSuccess(true);
-      setPicture(null);
-      setPreview(null);
-      fileUploadInput.current.value = "";
-      reset();
+      history.push("/");
     }
-  }, [status, picture, setPicture, reset]);
-
-  function submitCat() {
-    if (picture) {
-      const formData = new FormData();
-      formData.append("file", picture);
-
-      uploadCat({ data: formData });
-    }
-  }
+  }, [status, history]);
 
   function triggerImageSelection() {
     fileUploadInput.current.click();
@@ -84,10 +72,16 @@ export function UploadForm() {
   function setImage(event) {
     if (event.target.files[0]) {
       const tempPicture = event.target.files[0];
-
       setPicture(tempPicture);
       setPreview(URL.createObjectURL(tempPicture));
-      setShowSuccess(false);
+    }
+  }
+
+  function submitCat() {
+    if (picture) {
+      const formData = new FormData();
+      formData.append("file", picture);
+      uploadCat({ data: formData });
     }
   }
 
@@ -135,15 +129,16 @@ export function UploadForm() {
         onChange={setImage}
         className={classes.hiddenInput}
         alt="image"
+        accept="image/png, image/jpeg"
       />
 
-      {showSuccess && (
-        <Typography align="center" variant="h1">
-          Image Uploaded Successfully
+      {status === "loading" && <Loading />}
+      {status === "error" && (
+        <Typography color="error" align="center">
+          Whoops, looks like something's not quite right, please try again
+          later.
         </Typography>
       )}
-      {status === "loading" && <Loading />}
-      {status === "error" && <Typography color="error">{error}</Typography>}
     </div>
   );
 }

@@ -8,9 +8,9 @@ import { post } from "api";
  *   },
  */
 export function useSetFavourite() {
-  const { mutate, status, error, data } = useMutation(({ data }) =>
+  const { mutate, status, error, data, reset } = useMutation(({ data }) =>
     post({
-      path: `${process.env.REACT_APP_CAT_API_URL}/favourites`,
+      path: `https://api.thecatapi.com/v1/favourites`,
       data,
       headers: {
         "x-api-key": process.env.REACT_APP_CAT_API_KEY,
@@ -23,5 +23,6 @@ export function useSetFavourite() {
     status,
     error,
     data,
+    reset,
   };
 }

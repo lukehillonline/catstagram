@@ -9,7 +9,6 @@ import theme from "theme";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      useErrorBoundary: true,
       retry: 3,
     },
   },
