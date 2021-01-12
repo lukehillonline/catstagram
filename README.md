@@ -1,10 +1,24 @@
 This project is a bit of fun that uses [TheCatAPI](https://docs.thecatapi.com/) to create a SPA that allows you to upload pictures of a cat, favourite them and vote on them.
 
+## Requirements
+
+- [Nodejs](https://nodejs.org/en/)
+
+## Features
+
+- [Webpack](https://webpack.github.io/) for asset bundling / optimisation etc
+- [Babel](https://babeljs.io/) compiler for ES6 JavaScript
+- [React](https://reactjs.org/) JavaScript library
+- [Create React App](https://github.com/facebook/create-react-app) React Bootstrap
+- [React Query](https://react-query.tanstack.com/) Data synchronisation
+- [Material UI](https://material-ui.com/) Component library
+- [Axios](https://github.com/axios/axios) HTTP client
+- [Jest](https://jestjs.io/) JavaScript testing framework
+- [React Testing Library](https://testing-library.com/) Testing utilities
+
 # Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
 
 In the project directory, you can run:
 
