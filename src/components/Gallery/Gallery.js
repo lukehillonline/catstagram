@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useGetCats } from "lib";
 import { GalleryItem, Loading } from "components";
 import { pxToREM } from "utils";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
   container: ({ status }) => ({
@@ -25,10 +26,14 @@ export function Gallery() {
       {status === "loading" ? (
         <Loading />
       ) : status === "success" ? (
-        data.data.map((item, index) => <GalleryItem key={index} data={item} />)
-      ) : (
-        <>Error</>
-      )}
+        data.data.map((item, index) => (
+          <GalleryItem key={item.id} data={item} />
+        ))
+      ) : status === "error" ? (
+        <Typography color="error">
+          Whoops, it appears something has gone wrong, please try again later.
+        </Typography>
+      ) : null}
     </div>
   );
 }

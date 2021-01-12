@@ -38,41 +38,29 @@ const useStyles = makeStyles((theme) => ({
  */
 export function Vote({ imageId }) {
   const [count, setCount] = useState(0);
-  const [direction, setDirection] = useState();
   const createVote = useCreateVote();
   const classes = useStyles({ count });
 
   function handleVoteUp() {
-    setDirection("UP");
     createVote.createVote({
       data: {
         image_id: imageId,
         value: 1,
       },
+      callback: () => setCount((count) => count + 1),
     });
   }
 
   function handleVoteDown() {
-    setDirection("DOWN");
     createVote.createVote({
       data: {
         image_id: imageId,
         value: 0,
       },
+
+      callback: () => setCount((count) => count - 1),
     });
   }
-
-  useEffect(() => {
-    if (createVote.status === "success") {
-      if (direction === "UP") {
-        setCount((count) => count + 1);
-      } else if (direction === "DOWN") {
-        setCount((count) => count - 1);
-      }
-
-      setDirection(null);
-    }
-  }, [createVote, direction]);
 
   return (
     <div className={classes.wrapper}>

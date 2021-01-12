@@ -12,14 +12,22 @@ import { post } from "api";
  * will decrease
  */
 export function useCreateVote() {
-  const { mutate, status, error, reset } = useMutation(({ data }) =>
-    post({
-      path: `${process.env.REACT_APP_CAT_API_URL}/votes`,
-      data,
-      headers: {
-        "x-api-key": process.env.REACT_APP_CAT_API_KEY,
+  const { mutate, status, error, reset } = useMutation(
+    ({ data, callback }) =>
+      post({
+        path: `${process.env.REACT_APP_CAT_API_URL}/votes`,
+        data,
+        headers: {
+          "x-api-key": process.env.REACT_APP_CAT_API_KEY,
+        },
+      }),
+    {
+      onSuccess: (data, props) => {
+        if (typeof props.callback === "function") {
+          props.callback();
+        }
       },
-    })
+    }
   );
 
   return {

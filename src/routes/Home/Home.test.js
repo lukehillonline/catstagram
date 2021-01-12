@@ -74,22 +74,29 @@ test("A user can vote up and down item", async () => {
         url: "https://cdn2.thecatapi.com/images/bn1I9i1TT.jpg",
         width: 700,
       },
+      {
+        height: 700,
+        id: "bn1I9i1TT",
+        original_filename: "WhiteCat_20170526_03.jpg",
+        url: "https://cdn2.thecatapi.com/images/bn1I9i1TT.jpg",
+        width: 700,
+      },
     ],
   });
 
   customRender(<Home />);
 
-  await waitFor(() => expect(screen.getByTitle("Vote Up")).toBeInTheDocument());
+  expect(await screen.findByTitle("Vote Up")).toBeInTheDocument();
 
   axios.post.mockResolvedValue({
     data: { message: "success", id: 0 },
   });
 
-  fireEvent.click(screen.getByTitle("Vote Up"));
+  fireEvent.click(screen.getAllByTitle("Vote Up")[0]);
 
-  await waitFor(() => expect(screen.getByText("1")).toBeInTheDocument());
+  expect((await screen.findAllByText("1")).length).toEqual(1);
 
-  fireEvent.click(screen.getByTitle("Vote Down"));
+  fireEvent.click(screen.getAllByTitle("Vote Down")[0]);
 
-  await waitFor(() => expect(screen.getByText("0")).toBeInTheDocument());
+  expect((await screen.findAllByText("0")).length).toEqual(2);
 });
