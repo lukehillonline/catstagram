@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-import { ErrorNotification } from "components";
 import { useCreateVote } from "lib";
 import { pxToREM } from "utils";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -39,10 +38,9 @@ const useStyles = makeStyles((theme) => ({
  * @param {integer} imageId the ID for image that is being voted on
  * @param {function} showError option function to show error messages
  */
-export function Vote({ imageId, showError }) {
-  const [count, setCount] = useState(0);
+export function Vote({ imageId, showError, voteCount }) {
   const { createVote, status, reset } = useCreateVote();
-  const classes = useStyles({ count });
+  const classes = useStyles({ count: voteCount });
 
   useEffect(() => {
     if (status === "error" && showError) {
@@ -57,9 +55,9 @@ export function Vote({ imageId, showError }) {
     createVote({
       data: {
         image_id: imageId,
+        sub_id: "1234",
         value: 1,
       },
-      callback: () => setCount((count) => count + 1),
     });
   }
 
@@ -67,10 +65,9 @@ export function Vote({ imageId, showError }) {
     createVote({
       data: {
         image_id: imageId,
+        sub_id: "1234",
         value: 0,
       },
-
-      callback: () => setCount((count) => count - 1),
     });
   }
 
@@ -84,12 +81,12 @@ export function Vote({ imageId, showError }) {
           tabIndex="0"
         />
         <Typography variant="h1" className={classes.count}>
-          {count}
+          {voteCount}
         </Typography>
         <ThumbDownIcon
           className={classes.thumbsDown}
           onClick={() => {
-            if (count > 0) {
+            if (voteCount > 0) {
               handleVoteDown();
             }
           }}

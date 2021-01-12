@@ -42,8 +42,9 @@ const useStyles = makeStyles((theme) => ({
  *
  * @param {object} data the data about the gallery item
  */
-export function GalleryItem({ data }) {
+export function GalleryItem({ data, votes }) {
   const [errorMessage, setErrorMessage] = useState();
+  const [voteCount, setVoteCount] = useState(0);
   const errorTimer = useRef();
   const classes = useStyles({ url: data.url });
 
@@ -52,6 +53,28 @@ export function GalleryItem({ data }) {
       clearTimeout(errorTimer.current);
     };
   });
+
+  useEffect(() => {
+    if (votes.status === "success") {
+      let count = 0;
+
+      if (votes.data.data.length > 0) {
+        const imageVotes = votes.data.data.filter(
+          (item) => item.image_id === data.id
+        );
+
+        imageVotes.map((vote) => {
+          if (vote.value) {
+            count = count + 1;
+          } else {
+            count = count - 1;
+          }
+          return count;
+        });
+        setVoteCount(count);
+      }
+    }
+  }, [votes, data]);
 
   function showError(message) {
     clearTimeout(errorTimer.current);
@@ -69,7 +92,7 @@ export function GalleryItem({ data }) {
           showError={showError}
           styleOverride={classes.favouriteButton}
         />
-        <Vote imageId={data.id} showError={showError} />
+        <Vote imageId={data.id} showError={showError} voteCount={voteCount} />
       </div>
 
       {errorMessage && <ErrorNotification>{errorMessage}</ErrorNotification>}

@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-import { useGetCats } from "lib";
+import { useGetCats, useGetVotes } from "lib";
 import { GalleryItem, Loading } from "components";
 import { pxToREM } from "utils";
 
@@ -17,16 +17,23 @@ const useStyles = makeStyles({
  * This component renders a gallery of images
  */
 export function Gallery() {
-  const { data, status } = useGetCats();
-  const classes = useStyles({ status });
+  const cats = useGetCats();
+  const votes = useGetVotes();
+  const classes = useStyles({ status: cats.status });
 
   return (
     <div className={classes.container}>
-      {status === "loading" ? (
+      {cats.status === "loading" ? (
         <Loading />
-      ) : status === "success" ? (
-        data.data.map((item) => <GalleryItem key={item.id} data={item} />)
-      ) : status === "error" ? (
+      ) : cats.status === "success" ? (
+        cats.data.data.map((item) => (
+          <GalleryItem
+            key={item.id}
+            data={item}
+            votes={votes.status === "success" && votes}
+          />
+        ))
+      ) : cats.status === "error" ? (
         <Typography color="error" align="center">
           Whoops, it appears something has gone wrong, please try again later.
         </Typography>
