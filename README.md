@@ -20,7 +20,7 @@ This project is a bit of fun that uses [TheCatAPI](https://docs.thecatapi.com/) 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This projects requires an API key for the Cat API that needs to be provided from an `.env.developement` file. Luckily for you one has been included in .env.example, you'll just need to duplicate this file and call it `.env.developement`.
+This projects requires an API key for the Cat API that needs to be provided from an `.env.developement` file. Luckily for you one has been included in `.env.example`, you'll just need to duplicate this file and call it `.env.developement`.
 
 In the project directory, you can run:
 
