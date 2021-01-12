@@ -37,8 +37,5 @@ test("An image can be uploaded", async () => {
   });
 
   fireEvent.click(screen.getByRole("button", { text: "Upload" }));
-
-  expect(
-    await screen.findByText("Image Uploaded Successfully")
-  ).toBeInTheDocument();
+  await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(1));
 });

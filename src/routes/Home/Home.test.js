@@ -9,12 +9,16 @@ test("Renders the gallery", async () => {
     data: [
       {
         height: 700,
-        id: "bn1I9i1TT",
-        original_filename: "WhiteCat_20170526_03.jpg",
+        id: "IMAGE1",
+        original_filename: "image_1.jpg",
         url: "https://cdn2.thecatapi.com/images/bn1I9i1TT.jpg",
         width: 700,
       },
     ],
+  });
+
+  axios.get.mockResolvedValueOnce({
+    data: [],
   });
 
   customRender(<Home />);
@@ -23,6 +27,7 @@ test("Renders the gallery", async () => {
     expect(screen.getByTitle("Click to favourite")).toBeInTheDocument()
   );
 
+  // Mock create vote
   axios.post.mockResolvedValueOnce({
     data: { message: "success", id: 0 },
   });
@@ -39,12 +44,16 @@ test("A user can favourite an item", async () => {
     data: [
       {
         height: 700,
-        id: "bn1I9i1TT",
-        original_filename: "WhiteCat_20170526_03.jpg",
+        id: "IMAGE1",
+        original_filename: "image_1.jpg",
         url: "https://cdn2.thecatapi.com/images/bn1I9i1TT.jpg",
         width: 700,
       },
     ],
+  });
+
+  axios.get.mockResolvedValueOnce({
+    data: [],
   });
 
   customRender(<Home />);
@@ -53,6 +62,7 @@ test("A user can favourite an item", async () => {
     expect(screen.getByTitle("Click to favourite")).toBeInTheDocument()
   );
 
+  // Mock favourite
   axios.post.mockResolvedValueOnce({
     data: { message: "success", id: 0 },
   });
@@ -64,7 +74,7 @@ test("A user can favourite an item", async () => {
   );
 });
 
-test("A user can vote up and down item", async () => {
+test("A user can vote on an item", async () => {
   axios.get.mockResolvedValueOnce({
     data: [
       {
@@ -84,10 +94,15 @@ test("A user can vote up and down item", async () => {
     ],
   });
 
+  axios.get.mockResolvedValueOnce({
+    data: [],
+  });
+
   customRender(<Home />);
 
   await waitFor(() => expect(screen.getAllByText("0").length).toEqual(2));
 
+  // Mock create vote
   axios.post.mockResolvedValueOnce({
     data: { message: "success", id: 0 },
   });
@@ -96,13 +111,4 @@ test("A user can vote up and down item", async () => {
 
   await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(1));
   await waitFor(() => expect(screen.getAllByText("1").length).toEqual(1));
-
-  axios.post.mockResolvedValueOnce({
-    data: { message: "success", id: 1 },
-  });
-
-  fireEvent.click(screen.getAllByTitle("Vote Down")[0]);
-
-  await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(1));
-  await waitFor(() => expect(screen.getAllByText("0").length).toEqual(2));
 });

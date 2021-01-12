@@ -39,8 +39,13 @@ const useStyles = makeStyles((theme) => ({
  * @param {function} showError option function to show error messages
  */
 export function Vote({ imageId, showError, voteCount }) {
+  const [count, setCount] = useState(0);
   const { createVote, status, reset } = useCreateVote();
   const classes = useStyles({ count: voteCount });
+
+  useEffect(() => {
+    setCount(voteCount);
+  }, [voteCount]);
 
   useEffect(() => {
     if (status === "error" && showError) {
@@ -58,6 +63,7 @@ export function Vote({ imageId, showError, voteCount }) {
         sub_id: "1234",
         value: 1,
       },
+      callback: () => setCount((count) => count + 1),
     });
   }
 
@@ -68,6 +74,7 @@ export function Vote({ imageId, showError, voteCount }) {
         sub_id: "1234",
         value: 0,
       },
+      callback: () => setCount((count) => count - 1),
     });
   }
 
@@ -81,12 +88,12 @@ export function Vote({ imageId, showError, voteCount }) {
           tabIndex="0"
         />
         <Typography variant="h1" className={classes.count}>
-          {voteCount}
+          {count}
         </Typography>
         <ThumbDownIcon
           className={classes.thumbsDown}
           onClick={() => {
-            if (voteCount > 0) {
+            if (count > 0) {
               handleVoteDown();
             }
           }}
